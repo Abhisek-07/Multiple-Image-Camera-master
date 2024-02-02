@@ -40,9 +40,9 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
     });
   }
 
-  removeImage() {
+  removeImage(int index) {
     setState(() {
-      imageFiles.removeLast();
+      imageFiles.removeAt(index);
     });
   }
 
@@ -113,57 +113,16 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
                   return Row(
                     children: <Widget>[
                       Container(
-                        alignment: Alignment.bottomLeft,
-                        // ignore: unnecessary_null_comparison
-                        child: imageFiles[index] == null
-                            ? const Text("No image captured")
-                            : imageFiles.length - 1 == index
-                                ? ScaleTransition(
-                                    scale: scaleAnimation,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        ImagePreviewView(
-                                                          File(imageFiles[index]
-                                                              .path),
-                                                          "",
-                                                        )));
-                                      },
-                                      child: Stack(
-                                        children: [
-                                          Image.file(
-                                            File(
-                                              imageFiles[index].path,
-                                            ),
-                                            height: 90,
-                                            width: 60,
-                                          ),
-                                          Positioned(
-                                            top: 0,
-                                            right: 0,
-                                            child: GestureDetector(
-                                                onTap: () {
-                                                  setState(() {
-                                                    removeImage();
-                                                  });
-                                                },
-                                                child: const Icon(Icons.close)
-                                                // Image.network(
-                                                //   "https://logowik.com/content/uploads/images/close1437.jpg",
-                                                //   height: 30,
-                                                //   width: 30,
-                                                // ),
-                                                ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                : GestureDetector(
+                          alignment: Alignment.bottomLeft,
+                          // ignore: unnecessary_null_comparison
+                          child: imageFiles[index] == null
+                              ? const Text("No image captured")
+                              :
+                              // imageFiles.length - 1 == index
+                              //     ?
+                              ScaleTransition(
+                                  scale: scaleAnimation,
+                                  child: GestureDetector(
                                     onTap: () {
                                       Navigator.push(
                                           context,
@@ -175,36 +134,98 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
                                                     "",
                                                   )));
                                     },
-                                    child: Image.file(
-                                      File(
-                                        imageFiles[index].path,
-                                      ),
-                                      height: 90,
-                                      width: 60,
+                                    child: Stack(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8, right: 4),
+                                          child: Image.file(
+                                            File(
+                                              imageFiles[index].path,
+                                            ),
+                                            height: 90,
+                                            width: 60,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: 0,
+                                          right: 0,
+                                          child: GestureDetector(
+                                              onTap: () {
+                                                setState(() {
+                                                  removeImage(index);
+                                                });
+                                              },
+                                              child: Container(
+                                                decoration: const BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Colors
+                                                      .purple, // Change color as needed
+                                                ),
+                                                padding:
+                                                    const EdgeInsets.all(2),
+                                                child: const Center(
+                                                  child: Icon(
+                                                    Icons.close,
+                                                    size: 16,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              )
+                                              // const Icon(Icons.close)
+                                              // Image.network(
+                                              //   "https://logowik.com/content/uploads/images/close1437.jpg",
+                                              //   height: 30,
+                                              //   width: 30,
+                                              // ),
+                                              ),
+                                        )
+                                      ],
                                     ),
                                   ),
-                      )
+                                )
+                          // : GestureDetector(
+                          //     onTap: () {
+                          //       Navigator.push(
+                          //           context,
+                          //           MaterialPageRoute(
+                          //               builder: (BuildContext context) =>
+                          //                   ImagePreviewView(
+                          //                     File(
+                          //                         imageFiles[index].path),
+                          //                     "",
+                          //                   )));
+                          //     },
+                          //     child: Image.file(
+                          //       File(
+                          //         imageFiles[index].path,
+                          //       ),
+                          //       height: 90,
+                          //       width: 60,
+                          //     ),
+                          //   ),
+                          )
                     ],
                   );
                 }),
                 scrollDirection: Axis.horizontal,
               ),
-              Positioned(
-                right:
-                    MediaQuery.of(context).orientation == Orientation.portrait
-                        ? 340
-                        : null,
-                bottom: 0,
-                left: 0,
-                child: IconButton(
-                  iconSize: 40,
-                  icon: const Icon(
-                    Icons.camera_front,
-                    color: Colors.white,
-                  ),
-                  onPressed: _onCameraSwitch,
-                ),
-              ),
+              // Positioned(
+              //   right:
+              //       MediaQuery.of(context).orientation == Orientation.portrait
+              //           ? 340
+              //           : null,
+              //   bottom: 0,
+              //   left: 0,
+              //   child: IconButton(
+              //     iconSize: 40,
+              //     icon: const Icon(
+              //       Icons.camera_front,
+              //       color: Colors.white,
+              //     ),
+              //     onPressed: _onCameraSwitch,
+              //   ),
+              // ),
               Positioned(
                 left: MediaQuery.of(context).orientation == Orientation.portrait
                     ? 0
@@ -358,7 +379,7 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
               : const SizedBox()
         ],
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white38,
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       extendBody: true,

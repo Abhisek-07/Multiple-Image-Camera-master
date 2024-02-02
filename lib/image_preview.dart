@@ -73,7 +73,7 @@ class _ImagePreviewViewState extends State<ImagePreviewView> {
     var decodedImage;
 
     decodedImage = await decodeImageFromList(widget.file.readAsBytesSync());
-   
+
     return decodedImage.width.toDouble();
   }
 }
