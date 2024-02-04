@@ -17,15 +17,15 @@ class _ImagePreviewViewState extends State<ImagePreviewView> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
-      SystemUiOverlay.bottom,
-    ]);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
+    //   SystemUiOverlay.bottom,
+    // ]);
   }
 
   @override
   void dispose() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+    //     overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     super.dispose();
   }
 
@@ -35,7 +35,7 @@ class _ImagePreviewViewState extends State<ImagePreviewView> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white38,
         elevation: 1,
         title: Text(
           widget.imageTitle,

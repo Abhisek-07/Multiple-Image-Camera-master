@@ -51,9 +51,9 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
         ? customContent
         : Container(
             height: 70,
-            width: 150,
+            width: 75,
             decoration: BoxDecoration(
-              color: Colors.white38,
+              color: Colors.transparent,
               borderRadius: BorderRadius.circular(100.0),
             ),
             child: const Center(
