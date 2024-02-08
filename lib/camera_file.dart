@@ -30,6 +30,7 @@ class _CameraFileState extends State<CameraFile> with TickerProviderStateMixin {
   addImages(XFile image) {
     setState(() {
       imageFiles.add(image);
+      //popcode
       _animationController = AnimationController(
           vsync: this, duration: const Duration(milliseconds: 1500));
       animation = Tween<double>(begin: 400, end: 1).animate(scaleAnimation =

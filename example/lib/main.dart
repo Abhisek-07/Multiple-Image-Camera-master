@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:multiple_image_camera/camera_file.dart';
@@ -49,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 context: context,
               ).then((value) {
                 setState(() {
+                  log(value.toString());
                   images = value;
                 });
               });
